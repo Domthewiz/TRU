@@ -1,4 +1,4 @@
-# RedCore-Example-Mod
+# TightRopeU (TRU)
 
 ## Overview
 This is a template repo for quickly getting a new NSMBU mod project up and running for [RedCore](https://github.com/Zenith-Team/RedCore).
