@@ -1,11 +1,12 @@
 #include <telkin/Print.h>
-#include <example/ExampleMod.h>
+#include <TRU/TRU.h>
 
-red::Registrar* example::getRegistrar() {
-    static red::Registrar sRegistrar("examplemod");
+red::Registrar* TRU::getRegistrar() {
+    static red::Registrar sRegistrar("TRU");
     return &sRegistrar;
 }
 
 void main() {
-    tk::println("Welcome to Example Mod");
+    tk::println("TightRopeU");
 }
+

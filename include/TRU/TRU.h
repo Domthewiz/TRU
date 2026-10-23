@@ -2,7 +2,7 @@
 
 #include <red/registry/Registrar.h>
 
-namespace example {
+namespace TRU {
     
     red::Registrar* getRegistrar();
     

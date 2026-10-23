@@ -1,3 +1,10 @@
 @addresses_from "00050000-10101D00" // US v1.3.0 (v64)
 
 // If your mod uses symbols that aren't in RedCore, you can add them here.
+
+// Ride2Point
+    _ZN10Ride2PointC1Ev = 0x021AF714;
+
+// ActorBgCollisionCheck::Sensor
+    _ZN21ActorBgCollisionCheck6Sensor21getDistFromCenterVertEPN4sead7Vector2IfEE = 0x02191C4C;
+    _ZN21ActorBgCollisionCheck6Sensor22getDistFromCenterHorizEPN4sead7Vector2IfEE = 0x02191CCC;

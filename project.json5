@@ -1,10 +1,10 @@
 {
     WURPLSVersion: "1.0",
     
-    Name: "ExampleMod",
+    Name: "TRU",
     Type: "Standard",
     Version: "1.0.0",
-    Description: "This is the RedCore example mod!",
+    Description: "Domthewiz' attempt at making the tightrope in nsmbu",
     
     SourceDirs: [
         "src"

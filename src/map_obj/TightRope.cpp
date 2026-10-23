@@ -1,0 +1,1 @@
+#include <TRU/map_obj/TightRope.h>
