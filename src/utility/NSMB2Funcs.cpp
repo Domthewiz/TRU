@@ -38,7 +38,7 @@ BgCollision* NSMB2_ActorBgCollisionCheck_getCollisionOwnerFoot(ActorBgCollisionC
 
 //? float __fastcall sub_55FFC4(sead::Vector2f *sensor_pos, Ride2Point *ride_2_point, float *a3, float *pointer)
 //? NSMB2 Address: 0x0055FFC4
-f32 sub_55FFC4(sead::Segment2f* sensor_pos, Ride2Point* ride_2_point, sead::Vector2f* a3, float* pointer) {
+f32 sub_55FFC4(sead::Segment2f* sensor_pos, Segment* ride_2_point, f32* a3, float* pointer) {
     float rideX; // s11
     float rideY; // s12
     float currentSensorX; // s13
@@ -57,17 +57,17 @@ f32 sub_55FFC4(sead::Segment2f* sensor_pos, Ride2Point* ride_2_point, sead::Vect
     float v19; // s1
     float v20; // s5
 
-    rideX = ride_2_point->getSegment().getSegment().getPos0().x;
-    rideY = ride_2_point->getSegment().getSegment().getPos0().y;
+    rideX = ride_2_point->getSegment().getPos0().x;
+    rideY = ride_2_point->getSegment().getPos0().y;
     currentSensorX = sensor_pos->getPos0().x;
     currentSensorY = sensor_pos->getPos0().y;
     prevSensorPos->x = sensor_pos->getPos1().x;
     prevSensorPos->y = sensor_pos->getPos1().y;
-    rideDistanceX = ride_2_point->getSegment().getSegment().getPos1().x - ride_2_point->getSegment().getSegment().getPos0().x;
-    rideDistanceY = ride_2_point->getSegment().getSegment().getPos1().y - rideY;
+    rideDistanceX = ride_2_point->getSegment().getPos1().x - ride_2_point->getSegment().getPos0().x;
+    rideDistanceY = ride_2_point->getSegment().getPos1().y - rideY;
     previousSensorX = prevSensorPos->x;
     previousSensorY = prevSensorPos->y;
-    sensorMinusRideX = currentSensorX - ride_2_point->getSegment().getSegment().getPos0().x;
+    sensorMinusRideX = currentSensorX - ride_2_point->getSegment().getPos0().x;
     rideHypotenuseSquared = (rideDistanceX * rideDistanceX) + (rideDistanceY * rideDistanceY);
     sensorDistanceSquared = (prevSensorPos->x * rideDistanceX) + (previousSensorY * rideDistanceY);
     v16 = (prevSensorPos->x * sensorMinusRideX) + (previousSensorY * (currentSensorY - rideY));
@@ -96,9 +96,9 @@ f32 sub_55FFC4(sead::Segment2f* sensor_pos, Ride2Point* ride_2_point, sead::Vect
     }
     v20 = rideDistanceY * v18;
     //! Omg bro this is the end of me
-    if ( a3->x != 0 )
+    if ( a3 != 0 )
     {
-        a3->x = v19;
+        *a3 = v19;
     }
     if ( pointer != nullptr )
     {
@@ -111,50 +111,50 @@ f32 sub_55FFC4(sead::Segment2f* sensor_pos, Ride2Point* ride_2_point, sead::Vect
 
 //? bool __fastcall sub_49A0F4(Ride2Point *ride2point, float *a2, float *sensor_pos_current, float a4, int a5)
 //? NSMB2 Address: 0x0049A0F4
-bool sub_49A0F4(Ride2Point *ride2point, float *a2, sead::Segment2f& sensor_pos_current, float a4, sead::Vector2f& a5) {
+bool sub_49A0F4(Segment *ride2point, sead::Vector2f* vec_out, sead::Segment2f& sensor_pos_current, float a4, const sead::Vector2f& a5) {
     float v8; // s4
     float v9; // s5
     float x; // s6
     f32 v11; // s2
     float y; // s1
     f32 v13; // s0
-    sead::Vector2f* v15; // [sp+0h] [bp-18h] BYREF
+    f32 v15; // [sp+0h] [bp-18h] BYREF
 
-    v15 = &a5;
-    f32 v67777 = sub_55FFC4(&sensor_pos_current, ride2point, v15, nullptr);
+    v15 = *&a5.x;
+    f32 v67777 = sub_55FFC4(&sensor_pos_current, ride2point, &v15, nullptr);
     // if ( *(u32*)&v67777 >= 0x38D1B717 ) // evil floating point bit level hacking
-    if ( v67777 >= 0.0001 )
-    {
+    if ( v67777 >= 0.0001 ) {
       return false;
     }
-    v8 = sensor_pos_current.getPos0().x + (sensor_pos_current.getPos1().x * v15->x);
-    v9 = sensor_pos_current.getPos0().y + (sensor_pos_current.getPos1().y * v15->x);
-    if ( ride2point->getSegment().getSegment().getPos0().x < ride2point->getSegment().getSegment().getPos1().x )
+
+    v8 = sensor_pos_current.getPos0().x + (sensor_pos_current.getPos1().x * v15);
+    v9 = sensor_pos_current.getPos0().y + (sensor_pos_current.getPos1().y * v15);
+    if ( ride2point->getSegment().getPos0().x < ride2point->getSegment().getPos1().x )
     {
-      x = ride2point->getSegment().getSegment().getPos0().x;
+      x = ride2point->getSegment().getPos0().x;
     }
     else
     {
-      x = ride2point->getSegment().getSegment().getPos1().x;
-      v11 = ride2point->getSegment().getSegment().getPos0().x;
+      x = ride2point->getSegment().getPos1().x;
+      v11 = ride2point->getSegment().getPos0().x;
     }
-    if ( ride2point->getSegment().getSegment().getPos0().y >= ride2point->getSegment().getSegment().getPos1().y )
+    if ( ride2point->getSegment().getPos0().y >= ride2point->getSegment().getPos1().y )
     {
-      y = ride2point->getSegment().getSegment().getPos1().y;
+      y = ride2point->getSegment().getPos1().y;
     }
     else
     {
-      y = ride2point->getSegment().getSegment().getPos0().y;
-      v13 = ride2point->getSegment().getSegment().getPos1().y;
+      y = ride2point->getSegment().getPos0().y;
+      v13 = ride2point->getSegment().getPos1().y;
     }
     if ( x > v8 || y > v9 )
     {
       return false;
     }
-    if ( a2 != nullptr )
+    if ( vec_out != nullptr )
     {
-      *a2 = v8;
-      a2[1] = v9;
+      vec_out->x = v8;
+      vec_out->y = v9;
     }
     return true;
 }
@@ -398,6 +398,60 @@ bool sub_49A0F4(Ride2Point *ride2point, float *a2, sead::Segment2f& sensor_pos_c
 //   goto LABEL_29;
 // }
 
+// Stolen straight out of ida ( but it was already decompiled )
+f32 smoothStepTowards(f32 *value, f32 target, f32 scaleFactor, f32 maxStep, f32 minStep) {
+    float _value; // s4
+    float stepSize; // s1
+    float newValue; // s1
+    f32 result; // s0
+
+    _value = *value;
+    stepSize = (target - *value) * scaleFactor;
+    if ( stepSize <= 0.0 )
+    {
+        stepSize = -stepSize;
+    }
+    if ( stepSize >= minStep )
+    {
+        if ( stepSize > maxStep )
+        {
+        stepSize = maxStep;
+        }
+    }
+    else
+    {
+        stepSize = minStep;
+    }
+    if ( _value >= target )
+    {
+        if ( _value <= target )
+        {
+        goto LABEL_16;
+        }
+        newValue = _value - stepSize;
+        if ( newValue > target && newValue <= _value )
+        {
+        goto LABEL_15;
+        }
+    LABEL_14:
+        *value = target;
+        goto LABEL_16;
+    }
+    newValue = _value + stepSize;
+    if ( target <= newValue || _value > newValue )
+    {
+        goto LABEL_14;
+    }
+    LABEL_15:
+    *value = newValue;
+    LABEL_16:
+    result = target - *value;
+    if ( result <= 0.0 )
+    {
+        return -result;
+    }
+    return result;
+}
 //* X-----------------X
 //* | END NSMB2 Funcs |
 //* X-----------------X

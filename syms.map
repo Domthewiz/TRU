@@ -8,3 +8,16 @@
 // ActorBgCollisionCheck::Sensor
     _ZN21ActorBgCollisionCheck6Sensor21getDistFromCenterVertEPN4sead7Vector2IfEE = 0x02191C4C;
     _ZN21ActorBgCollisionCheck6Sensor22getDistFromCenterHorizEPN4sead7Vector2IfEE = 0x02191CCC;
+
+// Segment
+    _ZN7Segment12FUN_021b0044EPN21ActorBgCollisionCheck6SensorEjbb = 0x021B0044;
+
+// BgCollision
+    _ZN11BgCollision13callCallbacksEP21ActorBgCollisionCheckh = 0x021A64B8;
+    _ZN11BgCollision19callBgUnitCallbacksEP21ActorBgCollisionCheckh = 0x021A71A8;
+
+// ActorBgCollisionCheck
+    _ZN21ActorBgCollisionCheck19calcSensorCollisionEP11BgCollisionj = 0x0218EC0C;
+
+// sead
+    _ZN4sead7Vector2IfE2exE = 0x105EA748;

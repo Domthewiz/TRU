@@ -9,4 +9,3 @@ red::Registrar* TRU::getRegistrar() {
 void main() {
     tk::println("TightRopeU");
 }
-
